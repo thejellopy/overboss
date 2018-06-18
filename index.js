@@ -10,14 +10,22 @@ const clients = {
 const schedule = require('node-schedule')
 const moment = require('moment')
 moment.locale('en')
+const sprintf = require('sprintf-js').sprintf
+const random = require("random-js")()
 
-const ALERT_TIMER = 15
+const ALERT_TIMERS = [30, 15]
+const ENDING = [
+  'เตรียมตัวไปตายกันเถอะ!',
+  'ขอให้ความกลือจงสถิตอยู่กับเจ้า!',
+  'หลุดก่อนบอสเกิดแน่นอน!',
+  'อย่าลืมหยิบกล่องบอสกลับมาด้วยหละ',
+]
 
 const BOSSES = [
   {
     index: 0,
     type: `kzarka`,
-    alert: `:timer: @everyone Kzarka กำลังจะเกิดในอีก ${ALERT_TIMER} นาที เตรียมตัวไปตายกันเถอะ!`,
+    alert: `:timer: @everyone Kzarka กำลังจะเกิดในอีก %d นาที %s`,
     spawn: `:loudspeaker: @everyone เสียงคำรามของพระเจ้าแห่งการทุจริต คจาคาร์ กำลังสั่นสะเทือนเซเรนเดีย`,
     schedule: [
       { day: 0, hour: 0, minute: 0 },
@@ -36,7 +44,7 @@ const BOSSES = [
   {
     index: 1,
     type: `kutum`,
-    alert: `:timer: @everyone Kutum กำลังจะเกิดในอีก ${ALERT_TIMER} นาที เตรียมตัวไปตายกันเถอะ!`,
+    alert: `:timer: @everyone Kutum กำลังจะเกิดในอีก %d นาที %s`,
     spawn: `:loudspeaker: @everyone หัวใจของคูทุมโบราณในห้องหินทรายสีแดงกำลังสั่นระริก`,
     schedule: [
       { day: 0, hour: 14, minute: 0 },
@@ -76,11 +84,13 @@ function init(boss) {
       CHANNELS[boss.type].send(boss.spawn)
     }).bind(null, boss, spawn))
 
-    let alert = spawn.clone().subtract(ALERT_TIMER, 'minutes')
+    ALERT_TIMERS.forEach((timer) => {
+      let alert = spawn.clone().subtract(timer, 'minutes')
 
-    schedule.scheduleJob(`${alert.minute()} ${alert.hour()} * * ${alert.day()}`, ((boss, alert) => {
-      CHANNELS[boss.type].send(boss.alert)
-    }).bind(null, boss, alert))
+      schedule.scheduleJob(`${alert.minute()} ${alert.hour()} * * ${alert.day()}`, ((boss, alert, timer) => {
+        CHANNELS[boss.type].send(sprintf(boss.alert, timer, ENDING[random.integer(0, ENDING.length - 1)]))
+      }).bind(null, boss, alert, timer))
+    })
   })
 
   schedule.scheduleJob(`* * * * *`, ((boss) => {
