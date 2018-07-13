@@ -13,10 +13,10 @@ moment.locale('en')
 const sprintf = require('sprintf-js').sprintf
 const random = require("random-js")()
 
-const ALERT_TIMERS = [30, 15]
+const ALERT_TIMERS = [20, 10]
 const ENDING = [
   'เตรียมตัวไปตายกันเถอะ!',
-  'ขอให้ความกลือจงสถิตอยู่กับเจ้า!',
+  'ขอให้ความเกลือจงสถิตอยู่กับเจ้า!',
   'หลุดก่อนบอสเกิดแน่นอน!',
   'อย่าลืมหยิบกล่องบอสกลับมาด้วยหละ',
 ]
@@ -25,8 +25,8 @@ const BOSSES = [
   {
     index: 0,
     type: `kzarka`,
-    alert: `:timer: @everyone Kzarka กำลังจะเกิดในอีก %d นาที %s`,
-    spawn: `:loudspeaker: @everyone เสียงคำรามของพระเจ้าแห่งการทุจริต คจาคาร์ กำลังสั่นสะเทือนเซเรนเดีย`,
+    alert: `:timer: @here Kzarka กำลังจะเกิดในอีก %d นาที %s`,
+    spawn: `:loudspeaker: @here เสียงคำรามของพระเจ้าแห่งการทุจริต คจาคาร์ กำลังสั่นสะเทือนเซเรนเดีย`,
     schedule: [
       { day: 0, hour: 0, minute: 0 },
       { day: 0, hour: 10, minute: 0 },
@@ -44,8 +44,8 @@ const BOSSES = [
   {
     index: 1,
     type: `kutum`,
-    alert: `:timer: @everyone Kutum กำลังจะเกิดในอีก %d นาที %s`,
-    spawn: `:loudspeaker: @everyone หัวใจของคูทุมโบราณในห้องหินทรายสีแดงกำลังสั่นระริก`,
+    alert: `:timer: @here Kutum กำลังจะเกิดในอีก %d นาที %s`,
+    spawn: `:loudspeaker: @here หัวใจของคูทุมโบราณในห้องหินทรายสีแดงกำลังสั่นระริก`,
     schedule: [
       { day: 0, hour: 14, minute: 0 },
       { day: 1, hour: 10, minute: 0 },
