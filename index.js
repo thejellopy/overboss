@@ -5,6 +5,7 @@ const Discord = require('discord.js')
 const clients = {
   kzarka: new Discord.Client(),
   kutum: new Discord.Client(),
+  nouver: new Discord.Client(),
 }
 
 const schedule = require('node-schedule')
@@ -13,7 +14,7 @@ moment.locale('en')
 const sprintf = require('sprintf-js').sprintf
 const random = require("random-js")()
 
-const ALERT_TIMERS = [20, 10]
+const ALERT_TIMERS = [30, 15]
 const ENDING = [
   'เตรียมตัวไปตายกันเถอะ!',
   'ขอให้ความเกลือจงสถิตอยู่กับเจ้า!',
@@ -28,12 +29,12 @@ const BOSSES = [
     alert: `:timer: @here Kzarka กำลังจะเกิดในอีก %d นาที %s`,
     spawn: `:loudspeaker: @here เสียงคำรามของพระเจ้าแห่งการทุจริต คจาคาร์ กำลังสั่นสะเทือนเซเรนเดีย`,
     schedule: [
-      { day: 0, hour: 0, minute: 0 },
+      { day: 0, hour: 0, minute: 15 },
       { day: 0, hour: 10, minute: 0 },
       { day: 0, hour: 18, minute: 0 },
       { day: 1, hour: 14, minute: 0 },
       { day: 2, hour: 18, minute: 0 },
-      { day: 3, hour: 0, minute: 0 },
+      { day: 3, hour: 0, minute: 15 },
       { day: 3, hour: 14, minute: 0 },
       { day: 4, hour: 10, minute: 0 },
       { day: 4, hour: 18, minute: 0 },
@@ -52,11 +53,29 @@ const BOSSES = [
       { day: 1, hour: 18, minute: 0 },
       { day: 2, hour: 14, minute: 0 },
       { day: 3, hour: 18, minute: 0 },
-      { day: 4, hour: 0, minute: 0 },
+      { day: 4, hour: 0, minute: 15 },
       { day: 4, hour: 14, minute: 0 },
       { day: 5, hour: 10, minute: 0 },
       { day: 5, hour: 18, minute: 0 },
       { day: 6, hour: 14, minute: 0 },
+    ],
+  },
+  {
+    index: 2,
+    type: `nouver`,
+    alert: `:timer: @here Nouver กำลังจะเกิดในอีก %d นาที %s`,
+    spawn: `:loudspeaker: @here นูเวอร์เกิดโว้ยยยยยยยยยยยยยยยยยยยยยยยย`,
+    schedule: [
+      { day: 0, hour: 10, minute: 0 },
+      { day: 0, hour: 18, minute: 0 },
+      { day: 1, hour: 14, minute: 0 },
+      { day: 2, hour: 18, minute: 0 },
+      { day: 3, hour: 10, minute: 0 },
+      { day: 4, hour: 14, minute: 0 },
+      { day: 5, hour: 10, minute: 0 },
+      { day: 5, hour: 18, minute: 0 },
+      { day: 6, hour: 14, minute: 0 },
+      { day: 6, hour: 18, minute: 0 },
     ],
   },
 ]
@@ -66,6 +85,7 @@ const ACTIVITY_OPTIONS = { type: 'PLAYING' }
 let CHANNELS = {
   kzarka: null,
   kutum: null,
+  nouver: null,
 }
 
 function init(boss) {
@@ -130,3 +150,4 @@ BOSSES.forEach((boss) => {
 
 clients.kzarka.login(process.env.KZARKA_BOT_TOKEN)
 clients.kutum.login(process.env.KUTUM_BOT_TOKEN)
+clients.nouver.login(process.env.NOUVER_BOT_TOKEN)
