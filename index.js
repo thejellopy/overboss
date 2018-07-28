@@ -64,7 +64,7 @@ const BOSSES = [
     index: 2,
     type: `nouver`,
     alert: `:timer: @here Nouver กำลังจะเกิดในอีก %d นาที %s`,
-    spawn: `:loudspeaker: @here นูเวอร์เกิดโว้ยยยยยยยยยยยยยยยยยยยยยยยย`,
+    spawn: `:loudspeaker: @here ร่องรอยของนูเวอร์ถูกเปิดเผยหลังจากพายุทรายผ่านไป`,
     schedule: [
       { day: 0, hour: 10, minute: 0 },
       { day: 0, hour: 18, minute: 0 },
