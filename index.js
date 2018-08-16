@@ -6,6 +6,7 @@ const clients = {
   kzarka: new Discord.Client(),
   kutum: new Discord.Client(),
   nouver: new Discord.Client(),
+  karanda: new Discord.Client(),
 }
 
 const schedule = require('node-schedule')
@@ -29,17 +30,18 @@ const BOSSES = [
     alert: `:timer: @here Kzarka กำลังจะเกิดในอีก %d นาที %s`,
     spawn: `:loudspeaker: @here เสียงคำรามของพระเจ้าแห่งการทุจริต คจาคาร์ กำลังสั่นสะเทือนเซเรนเดีย`,
     schedule: [
-      { day: 0, hour: 0, minute: 15 },
+      { day: 0, hour: 0, minute: 30 },
       { day: 0, hour: 10, minute: 0 },
-      { day: 0, hour: 18, minute: 0 },
-      { day: 1, hour: 14, minute: 0 },
-      { day: 2, hour: 18, minute: 0 },
-      { day: 3, hour: 0, minute: 15 },
-      { day: 3, hour: 14, minute: 0 },
+      { day: 1, hour: 0, minute: 30 },
+      { day: 1, hour: 19, minute: 0 },
+      { day: 2, hour: 10, minute: 0 },
+      { day: 3, hour: 0, minute: 30 },
+      { day: 3, hour: 10, minute: 0 },
+      { day: 3, hour: 23, minute: 0 },
       { day: 4, hour: 10, minute: 0 },
-      { day: 4, hour: 18, minute: 0 },
+      { day: 4, hour: 19, minute: 0 },
       { day: 5, hour: 14, minute: 0 },
-      { day: 6, hour: 18, minute: 0 },
+      { day: 6, hour: 14, minute: 0 },
     ],
   },
   {
@@ -48,16 +50,17 @@ const BOSSES = [
     alert: `:timer: @here Kutum กำลังจะเกิดในอีก %d นาที %s`,
     spawn: `:loudspeaker: @here หัวใจของคูทุมโบราณในห้องหินทรายสีแดงกำลังสั่นระริก`,
     schedule: [
+      { day: 0, hour: 6, minute: 0 },
       { day: 0, hour: 14, minute: 0 },
-      { day: 1, hour: 10, minute: 0 },
-      { day: 1, hour: 18, minute: 0 },
+      { day: 1, hour: 23, minute: 0 },
+      { day: 2, hour: 6, minute: 0 },
       { day: 2, hour: 14, minute: 0 },
-      { day: 3, hour: 18, minute: 0 },
-      { day: 4, hour: 0, minute: 15 },
+      { day: 3, hour: 19, minute: 0 },
+      { day: 4, hour: 0, minute: 30 },
       { day: 4, hour: 14, minute: 0 },
       { day: 5, hour: 10, minute: 0 },
-      { day: 5, hour: 18, minute: 0 },
-      { day: 6, hour: 14, minute: 0 },
+      { day: 6, hour: 0, minute: 30 },
+      { day: 6, hour: 10, minute: 0 },
     ],
   },
   {
@@ -66,16 +69,34 @@ const BOSSES = [
     alert: `:timer: @here Nouver กำลังจะเกิดในอีก %d นาที %s`,
     spawn: `:loudspeaker: @here ร่องรอยของนูเวอร์ถูกเปิดเผยหลังจากพายุทรายผ่านไป`,
     schedule: [
-      { day: 0, hour: 10, minute: 0 },
-      { day: 0, hour: 18, minute: 0 },
+      { day: 0, hour: 14, minute: 0 },
+      { day: 0, hour: 23, minute: 0 },
       { day: 1, hour: 14, minute: 0 },
-      { day: 2, hour: 18, minute: 0 },
-      { day: 3, hour: 10, minute: 0 },
-      { day: 4, hour: 14, minute: 0 },
-      { day: 5, hour: 10, minute: 0 },
-      { day: 5, hour: 18, minute: 0 },
+      { day: 2, hour: 0, minute: 30 },
+      { day: 2, hour: 19, minute: 0 },
+      { day: 2, hour: 23, minute: 0 },
+      { day: 3, hour: 6, minute: 0 },
+      { day: 4, hour: 23, minute: 0 },
+      { day: 5, hour: 19, minute: 0 },
+      { day: 6, hour: 6, minute: 0 },
       { day: 6, hour: 14, minute: 0 },
-      { day: 6, hour: 18, minute: 0 },
+    ],
+  },
+  {
+    index: 3,
+    type: `karanda`,
+    alert: `:timer: @here Karanda กำลังจะเกิดในอีก %d นาที %s`,
+    spawn: `:loudspeaker: @here คาร่านด๊าาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาา`,
+    schedule: [
+      { day: 0, hour: 0, minute: 30 },
+      { day: 0, hour: 10, minute: 0 },
+      { day: 0, hour: 19, minute: 0 },
+      { day: 1, hour: 6, minute: 0 },
+      { day: 2, hour: 10, minute: 0 },
+      { day: 3, hour: 14, minute: 0 },
+      { day: 4, hour: 19, minute: 0 },
+      { day: 5, hour: 23, minute: 0 },
+      { day: 6, hour: 19, minute: 0 },
     ],
   },
 ]
@@ -86,6 +107,7 @@ let CHANNELS = {
   kzarka: null,
   kutum: null,
   nouver: null,
+  karanda: null,
 }
 
 function init(boss) {
@@ -151,3 +173,4 @@ BOSSES.forEach((boss) => {
 clients.kzarka.login(process.env.KZARKA_BOT_TOKEN)
 clients.kutum.login(process.env.KUTUM_BOT_TOKEN)
 clients.nouver.login(process.env.NOUVER_BOT_TOKEN)
+clients.karanda.login(process.env.KARANDA_BOT_TOKEN)
