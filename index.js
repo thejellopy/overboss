@@ -86,7 +86,7 @@ const BOSSES = [
     index: 3,
     type: `karanda`,
     alert: `:timer: @here Karanda กำลังจะเกิดในอีก %d นาที %s`,
-    spawn: `:loudspeaker: @here คาร่านด๊าาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาาา`,
+    spawn: `:loudspeaker: @here ลึกเข้าไปในสันเขา, ที่ปีกแห่งคารานด้า มีเหล่าฮาร์ปี้กำลังขู่คำราม`,
     schedule: [
       { day: 0, hour: 0, minute: 30 },
       { day: 0, hour: 10, minute: 0 },
