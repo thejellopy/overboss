@@ -75,7 +75,7 @@ const BOSSES = [
       { day: 2, hour: 0, minute: 30 },
       { day: 2, hour: 19, minute: 0 },
       { day: 2, hour: 23, minute: 0 },
-      { day: 3, hour: 6, minute: 0 },
+      { day: 4, hour: 6, minute: 0 },
       { day: 4, hour: 23, minute: 0 },
       { day: 5, hour: 19, minute: 0 },
       { day: 6, hour: 6, minute: 0 },
