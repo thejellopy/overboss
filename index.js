@@ -266,7 +266,12 @@ const ACTIVITY_OPTIONS = {
 }
 
 let PREFIX = '!'
-let CHANNEL = undefined
+let CHANNELS = {
+  kzarka: undefined,
+  kutum: undefined,
+  nouver: undefined,
+  karanda: undefined,
+}
 
 function init(boss) {
   boss.schedule.forEach((datetime) => {
@@ -279,8 +284,8 @@ function init(boss) {
     });
 
     schedule.scheduleJob(`${spawn.minute()} ${spawn.hour()} * * ${spawn.day()}`, ((boss, spawn) => {
-      if (CHANNEL != undefined) {
-        CHANNEL.send(boss.spawn)
+      if (CHANNELS[boss.type] != undefined) {
+        CHANNELS[boss.type].send(boss.spawn)
       }
     }).bind(null, boss, spawn))
 
@@ -288,8 +293,8 @@ function init(boss) {
       let alert = spawn.clone().subtract(timer, 'minutes')
 
       schedule.scheduleJob(`${alert.minute()} ${alert.hour()} * * ${alert.day()}`, ((boss, alert, timer) => {
-        if (CHANNEL != undefined) {
-          CHANNEL.send(sprintf(boss.alert, timer))
+        if (CHANNELS[boss.type] != undefined) {
+          CHANNELS[boss.type].send(sprintf(boss.alert, timer))
         }
       }).bind(null, boss, alert, timer))
     });
@@ -324,14 +329,14 @@ function findNextRespawn(times) {
   }
 }
 
-function doBind(chat) {
-  if (CHANNEL == undefined) {
+function doBind(chat, boss) {
+  if (CHANNELS[boss.type] == undefined) {
     chat.channel.send(`:wrench: ตั้งค่าการแจ้งเตือนบอสใน #${chat.channel.name}`)
   } else {
-    chat.channel.send(`:wrench: เปลี่ยนการแจ้งเตือนบอสจาก #${CHANNEL.name} เป็น #${chat.channel.name}`)
+    chat.channel.send(`:wrench: เปลี่ยนการแจ้งเตือนบอสจาก #${CHANNELS[boss.type].name} เป็น #${chat.channel.name}`)
   }
 
-  CHANNEL = chat.channel
+  CHANNELS[boss.type] = chat.channel
 }
 
 function doChangePrefix(chat, prefix) {
@@ -356,7 +361,7 @@ BOSSES.forEach((boss) => {
 
       switch (params[0]) {
         case 'bind':
-          return doBind(chat)
+          return doBind(chat, boss)
 
         case 'prefix':
           return doChangePrefix(chat, params[1])
