@@ -343,6 +343,8 @@ function doChangePrefix(chat, prefix) {
 BOSSES.forEach((boss) => {
   clients[boss.type].on('ready', () => {
     init(boss)
+
+    console.log(`Overboss (${boss.type}) is runing.`)
   })
 
   clients[boss.type].on('message', chat => {
@@ -367,4 +369,3 @@ clients.kzarka.login(process.env.KZARKA_BOT_TOKEN)
 clients.kutum.login(process.env.KUTUM_BOT_TOKEN)
 clients.nouver.login(process.env.NOUVER_BOT_TOKEN)
 clients.karanda.login(process.env.KARANDA_BOT_TOKEN)
-console.log('Overboss is runing.')
