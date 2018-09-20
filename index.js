@@ -78,7 +78,7 @@ const BOSSES = [{
       },
       {
         day: 6,
-        hour: 14,
+        hour: 10,
         minute: 0
       },
     ],
@@ -254,7 +254,7 @@ const BOSSES = [{
       },
       {
         day: 6,
-        hour: 19,
+        hour: 14,
         minute: 0
       },
     ],
