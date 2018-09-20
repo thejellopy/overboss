@@ -276,7 +276,7 @@ function init(boss) {
       minute: datetime.minute,
       second: 0,
       millisecond: 0,
-    })
+    });
 
     schedule.scheduleJob(`${spawn.minute()} ${spawn.hour()} * * ${spawn.day()}`, ((boss, spawn) => {
       if (CHANNEL != undefined) {
@@ -292,8 +292,8 @@ function init(boss) {
           CHANNEL.send(sprintf(boss.alert, timer))
         }
       }).bind(null, boss, alert, timer))
-    })
-  })
+    });
+  });
 
   schedule.scheduleJob(`* * * * *`, ((boss) => {
     clients[boss.type].user.setActivity(`Remaining in ${moment().to(findNextRespawn(boss.schedule), true)}`, ACTIVITY_OPTIONS)
@@ -308,7 +308,7 @@ function findNextRespawn(times) {
     minute: 0,
     second: 0,
     millisecond: 0,
-  })
+  });
 
   while (diff < 0) {
     for (i in times) {
@@ -345,7 +345,7 @@ BOSSES.forEach((boss) => {
     init(boss)
 
     console.log(`Overboss (${boss.type}) is runing.`)
-  })
+  });
 
   clients[boss.type].on('message', chat => {
     let content = chat.content.toLocaleLowerCase()
@@ -362,8 +362,8 @@ BOSSES.forEach((boss) => {
           return doChangePrefix(chat, params[1])
       }
     }
-  })
-})
+  });
+});
 
 clients.kzarka.login(process.env.KZARKA_BOT_TOKEN)
 clients.kutum.login(process.env.KUTUM_BOT_TOKEN)
