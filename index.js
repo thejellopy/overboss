@@ -15,12 +15,13 @@ moment.locale('en')
 const sprintf = require('sprintf-js').sprintf
 const random = require("random-js")()
 
+const MENTION = '@boss'
 const ALERT_TIMERS = [30, 15]
 const BOSSES = [{
     index: 0,
     type: `kzarka`,
-    alert: `:timer: @here **คจาคาร์** กำลังจะเกิดในอีก %d นาที`,
-    spawn: `:loudspeaker: @here เสียงคำรามของพระเจ้าแห่งการทุจริต คจาคาร์ กำลังสั่นสะเทือนเซเรนเดีย`,
+    alert: `:timer: ${MENTION} **คจาคาร์** กำลังจะเกิดในอีก %d นาที`,
+    spawn: `:loudspeaker: ${MENTION} เสียงคำรามของพระเจ้าแห่งการทุจริต คจาคาร์ กำลังสั่นสะเทือนเซเรนเดีย`,
     schedule: [{
         day: 0,
         hour: 0,
@@ -86,8 +87,8 @@ const BOSSES = [{
   {
     index: 1,
     type: `kutum`,
-    alert: `:timer: @here **คูทุม** กำลังจะเกิดในอีก %d นาที`,
-    spawn: `:loudspeaker: @here หัวใจของคูทุมโบราณในห้องหินทรายสีแดงกำลังสั่นระริก`,
+    alert: `:timer: ${MENTION} **คูทุม** กำลังจะเกิดในอีก %d นาที`,
+    spawn: `:loudspeaker: ${MENTION} หัวใจของคูทุมโบราณในห้องหินทรายสีแดงกำลังสั่นระริก`,
     schedule: [{
         day: 0,
         hour: 6,
@@ -148,8 +149,8 @@ const BOSSES = [{
   {
     index: 2,
     type: `nouver`,
-    alert: `:timer: @here **นูเวอร์** กำลังจะเกิดในอีก %d นาที`,
-    spawn: `:loudspeaker: @here ร่องรอยของนูเวอร์ถูกเปิดเผยหลังจากพายุทรายผ่านไป`,
+    alert: `:timer: ${MENTION} **นูเวอร์** กำลังจะเกิดในอีก %d นาที`,
+    spawn: `:loudspeaker: ${MENTION} ร่องรอยของนูเวอร์ถูกเปิดเผยหลังจากพายุทรายผ่านไป`,
     schedule: [{
         day: 0,
         hour: 14,
@@ -210,8 +211,8 @@ const BOSSES = [{
   {
     index: 3,
     type: `karanda`,
-    alert: `:timer: @here **คารานด้า** กำลังจะเกิดในอีก %d นาที`,
-    spawn: `:loudspeaker: @here ลึกเข้าไปในสันเขา, ที่ปีกแห่งคารานด้า มีเหล่าฮาร์ปี้กำลังขู่คำราม`,
+    alert: `:timer: ${MENTION} **คารานด้า** กำลังจะเกิดในอีก %d นาที`,
+    spawn: `:loudspeaker: ${MENTION} ลึกเข้าไปในสันเขา, ที่ปีกแห่งคารานด้า มีเหล่าฮาร์ปี้กำลังขู่คำราม`,
     schedule: [{
         day: 0,
         hour: 0,
